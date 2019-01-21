@@ -1,4 +1,4 @@
-# mpvue-demo
+# mpvue-book
 
 > A Mpvue project
 
