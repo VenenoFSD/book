@@ -1,0 +1,28 @@
+{
+  "pages": ["pages/book/main", "pages/comment/main", "pages/me/main"],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#63B8FF",
+    "navigationBarTitleText": "Veneno的图书管理",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "selectedColor": "#63B8FF",
+    "list": [{
+      "pagePath": "pages/book/main",
+      "text": "图书",
+      "iconPath": "static/img/book.png",
+      "selectedIconPath": "static/img/book-active.png"
+    }, {
+      "pagePath": "pages/comment/main",
+      "text": "评论",
+      "iconPath":  "static/img/todo.png",
+      "selectedIconPath": "static/img/comment-active.png"
+    }, {
+      "pagePath": "pages/me/main",
+      "text": "我的",
+      "iconPath":  "static/img/me.png",
+      "selectedIconPath": "static/img/me-active.png"
+    }]
+  }
+}
