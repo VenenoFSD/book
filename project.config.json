@@ -2,7 +2,7 @@
 	"description": "项目配置文件。",
 	"setting": {
 		"urlCheck": true,
-		"es6": false,
+		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true
@@ -12,7 +12,7 @@
 	"compileType": "miniprogram",
 	"appid": "wx3bb4b64b89511b83",
 	"projectname": "book",
-	"libVersion": "2.5.0",
+	"libVersion": "2.5.1",
 	"condition": {
 		"search": {
 			"current": -1,

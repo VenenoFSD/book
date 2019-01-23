@@ -1,5 +1,5 @@
 {
-  "pages": ["pages/book/main", "pages/comment/main", "pages/me/main"],
+  "pages": ["pages/me/main", "pages/book/main", "pages/comment/main"],
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#63B8FF",
@@ -16,7 +16,7 @@
     }, {
       "pagePath": "pages/comment/main",
       "text": "评论",
-      "iconPath":  "static/img/todo.png",
+      "iconPath":  "static/img/comment.png",
       "selectedIconPath": "static/img/comment-active.png"
     }, {
       "pagePath": "pages/me/main",

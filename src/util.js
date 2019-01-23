@@ -14,3 +14,10 @@ export function get(url) {
     })
   })
 }
+
+export function showInfo(title) {
+  wx.showToast({
+    title,
+    duration: 2000
+  });
+}
