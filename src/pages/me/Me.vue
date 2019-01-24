@@ -14,6 +14,8 @@
   import YearProgress from '../../components/YearProgress'
   import config from '../../config'
   import qcloud from 'wafer2-client-sdk'
+  import {post, showModal} from "../../util";
+
   export default {
     data () {
       return {
@@ -28,19 +30,6 @@
       bindGetUserInfo () {
         let self = this;
         qcloud.setLoginUrl(config.loginUrl);
-        // const session = qcloud.Session.get();
-        // if (session) { // 第二次登录，或者本地已经有登录态，可使用本函数更新登录态
-        //   qcloud.loginWithCode({
-        //     success (res) {
-        //       console.log('再次登录', res);
-        //     },
-        //     fail (err) {
-        //       console.error(err);
-        //     }
-        //   });
-        // } else {
-        // }
-        // 首次登录
         qcloud.login({
           success (res) {
             console.log('首次登录', res);
@@ -54,11 +43,21 @@
         });
       },
       scanBook () {
+        let self = this;
         wx.scanCode({
           success(res) {
-            console.log(res);
+            self.addBook(res.result);
           }
         });
+      },
+      async addBook (isbn) {
+        const {title} = await post('/weapp/addBook', {
+          isbn,
+          openid: this.userInfo.openId
+        });
+        if (title) {
+          showModal('添加成功', `${title}已添加`);
+        }
       }
     },
     created () {
@@ -70,6 +69,23 @@
     },
     components: {
       YearProgress
+    },
+    watch: {
+      userInfo () {
+        if (this.userInfo.openId === undefined) {
+          let self = this;
+          wx.login({
+            success (res) {
+              wx.request({
+                url: `https://api.weixin.qq.com/sns/jscode2session?appid=wx3bb4b64b89511b83&secret=5aef451b4c277a6f875d0e34ce2993f8&js_code=${res.code}&grant_type=authorization_code`,
+                success (res) {
+                  self.userInfo.openId = res.data.openid;
+                }
+              })
+            }
+          })
+        }
+      }
     }
   }
 </script>
