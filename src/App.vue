@@ -10,10 +10,20 @@
             console.log("用户已授权");
             wx.getUserInfo({
               success (res) {
-                let data = JSON.parse(res.rawData);
-                console.log(data);
                 showInfo('登录成功');
-                wx.setStorageSync('userInfo', data);
+                let data = JSON.parse(res.rawData);
+                wx.login({
+                  success (res) {
+                    wx.request({
+                      url: `https://api.weixin.qq.com/sns/jscode2session?appid=wx3bb4b64b89511b83&secret=5aef451b4c277a6f875d0e34ce2993f8&js_code=${res.code}&grant_type=authorization_code`,
+                      success (res) {
+                        data.openId = res.data.openid;
+                        console.log(data);
+                        wx.setStorageSync('userInfo', data);
+                      }
+                    });
+                  }
+                });
               }
             });
           } else {

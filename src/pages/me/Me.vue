@@ -69,23 +69,6 @@
     },
     components: {
       YearProgress
-    },
-    watch: {
-      userInfo () {
-        if (this.userInfo.openId === undefined) {
-          let self = this;
-          wx.login({
-            success (res) {
-              wx.request({
-                url: `https://api.weixin.qq.com/sns/jscode2session?appid=wx3bb4b64b89511b83&secret=5aef451b4c277a6f875d0e34ce2993f8&js_code=${res.code}&grant_type=authorization_code`,
-                success (res) {
-                  self.userInfo.openId = res.data.openid;
-                }
-              })
-            }
-          })
-        }
-      }
     }
   }
 </script>
