@@ -12,3 +12,14 @@ create table books(
   tags varchar(100),
   author varchar(100)
 )
+alter table `books` convert to character set utf8;
+
+create table comments(
+  id int not null auto_increment primary key,
+  openid varchar(100) not null,
+  bookid varchar(10) not null,
+  comment varchar(200) not null,
+  location varchar(50),
+  phone varchar(50)
+)
+alter table `comments` convert to character set utf8;
