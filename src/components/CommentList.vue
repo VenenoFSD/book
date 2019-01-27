@@ -1,6 +1,6 @@
 <template>
   <div class="comment-list">
-    <div class="comment-list-item" v-for="item in commentList" :key="item.id">
+    <div class="comment-list-item" v-for="item in commentList" :key="item.id" @click="handleClick(item.bookid)">
       <div class="header">
         <div class="user">
           <image :src="item.user_info.avatarUrl" mode="aspectFit"></image>
@@ -26,6 +26,19 @@
       commentList: {
         type: Array,
         default: () => []
+      },
+      type: {
+        type: String,
+        default: ''
+      }
+    },
+    methods: {
+      handleClick (id) {
+        if (this.type === 'user') {
+          wx.navigateTo({
+            url: `/pages/detail/main?id=${id}`
+          });
+        }
       }
     }
   };
